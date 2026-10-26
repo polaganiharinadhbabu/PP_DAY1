@@ -57,7 +57,7 @@ print(first_non_repeating("   "))
 
 ## Task B: Python Data Structures
 
-### 1. Difference Between List, Tuple, Set, and Dictionary
+1. Difference Between List, Tuple, Set, and Dictionary
 
 | Data Structure | Ordered | Duplicates | Mutable |
 |---|---|---|---|
@@ -66,28 +66,22 @@ print(first_non_repeating("   "))
 | Set | No positional order guarantee | No | Yes |
 | Dictionary | Yes (insertion order) | Keys: No; values: Yes | Yes |
 
-### 2. Scenario: Storing Unique Student IDs
+ 2. Scenario: Storing Unique Student IDs
 
 I would use a **set** because it stores unique values and automatically prevents duplicate student IDs.
 
-```python
 student_ids = {101, 102, 103, 101}
 print(student_ids)
-```
 
 Expected output (order may vary):
-
-```text
 {101, 102, 103}
-```
 
 Adding an ID that already exists does not create a duplicate. Set membership checks are O(1) on average.
 
-### 3. Scenario: Storing Student Profile Details
+ 3. Scenario: Storing Student Profile Details
 
 I would use a **dictionary** because it stores information as key-value pairs.
 
-```python
 student = {
     "id": 101,
     "name": "Kiran",
@@ -97,16 +91,12 @@ student = {
 
 print(student["name"])
 print(student.get("course"))
-```
 
 Expected output:
-
-```text
 Kiran
 Python Full Stack
-```
 
-Using `get()` can help avoid a `KeyError` when a key is missing. Required fields should also be validated.
+Using 'get()' can help avoid a 'KeyError' when a key is missing. Required fields should also be validated.
 
 ## Task C: Debugging
 
@@ -116,7 +106,6 @@ The goal is to print exactly one message: either that Kiran was found or that th
 
 ### Corrected Code
 
-```python
 students = ["Ravi", "Anil", "Kiran", "Suresh"]
 
 for student in students:
@@ -125,7 +114,6 @@ for student in students:
         break
 else:
     print("Student not found")
-```
 
 ### Explanation
 
@@ -134,20 +122,19 @@ The `break` statement stops the loop when Kiran is found. The `else` block belon
 This ensures that only one correct message is printed.
 
 ## Task D: Reflection
-
-### 1. What approach did I use?
+1. What approach did I use?
 
 I used a dictionary to count character frequencies and then traversed the string again to find the first character that appears only once.
 
-### 2. What did I learn today?
+2. What did I learn today?
 
 I learned how to use dictionaries for frequency counting, how Python data structures differ, and how `break` and `for...else` work in loops.
 
-### 3. What was difficult?
+3. What was difficult?
 
 Understanding how to ignore spaces, handle strings with no non-repeating characters, and place the `else` block correctly was challenging.
 
-### 4. What would I improve after mentor feedback?
+ 4. What would I improve after mentor feedback?
 
 I would improve variable naming, test more edge cases, and write reusable functions instead of keeping all the logic in a direct input-based script.
 
