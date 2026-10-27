@@ -1,111 +1,105 @@
-# Python Full Stack Placement Preparation — Day 1
+# DAY 1 — PYTHON FUNDAMENTALS & PROBLEM SOLVING
 
-**Name:** P. Harinadh Babu  
+**Name:** POLAGANI HARINADH BABU  
 **Date:** 26/10/2026  
 **Day:** 1
 
-## Task A: First Non-Repeating Character
+## 1. Coding Problem — First Non-Repeating Character
 
- 1. Approach
+### Approach
 
-- First, create an empty dictionary to store the frequency of each character.
-- Ignore spaces while counting characters.
-- Use a dictionary to count how many times each character appears.
-- Traverse the string again and return the first character whose frequency is 1.
-- If no such character exists, return a suitable message.
-- Uppercase and lowercase characters are treated as different characters.
+I used a dictionary to count the frequency of each character. First, I removed spaces from the input string. Then, I counted each character using a dictionary. Finally, I traversed the string again and returned the first character whose frequency was 1.
 
- 2. Python Code
+This approach preserves the original order and keeps uppercase and lowercase characters distinct.
 
+### Code
+
+```python
 def first_non_repeating(text):
-    a = {}
+    text = text.replace(" ", "")
+    freq = {}
 
-  for i in text:
-        if i != " ":
-            if i in a:
-                a[i] = a[i] + 1
-            else:
-                a[i] = 1
+    for char in text:
+        freq[char] = freq.get(char, 0) + 1
 
-  for i in text:
-        if i != " " and a[i] == 1:
-            return i
+    for char in text:
+        if freq[char] == 1:
+            return char
 
-  return "No non-repeating character found"
+    return "No non-repeating character found"
 
- 3. Test Cases
 
 print(first_non_repeating("programming"))
-# Expected output: p
+print(first_non_repeating("aabbcdd"))
+print(first_non_repeating("aabbcc"))
+```
+
+### Test Inputs and Outputs
+
+```python
+print(first_non_repeating("programming"))
+# p
 
 print(first_non_repeating("aabbcdd"))
-# Expected output: c
+# c
 
 print(first_non_repeating("aabbcc"))
-# Expected output: No non-repeating character found
+# No non-repeating character found
 
-print(first_non_repeating("Aabb"))
-# Expected output: A
+print(first_non_repeating("a"))
+# a
 
 print(first_non_repeating("   "))
-# Expected output: No non-repeating character found
+# No non-repeating character found
 
- 4. Time and Space Complexity
+print(first_non_repeating("AabA"))
+# a
+```
+
+### Time and Space Complexity
 
 - **Time Complexity:** O(n), because the string is traversed twice.
-- **Auxiliary Space Complexity:** O(k), where k is the number of distinct non-space characters stored in the dictionary.
+- **Space Complexity:** O(k), where k is the number of distinct non-space characters stored in the dictionary.
 
-## Task B: Python Data Structures
+## 2. Concept Question — List, Tuple, Set and Dictionary
 
-1. Difference Between List, Tuple, Set, and Dictionary
+| Feature | List | Tuple | Set | Dictionary |
+|---|---|---|---|---|
+| Order | Ordered | Ordered | No positional order guarantee | Insertion order preserved |
+| Duplicates | Allowed | Allowed | Unique elements only | Keys must be unique |
+| Mutable | Yes | No, shallowly immutable | Yes | Yes |
+| Main use | Ordered records that change | Fixed groups of values | Uniqueness and membership | Key-value lookup |
 
-| Data Structure | Ordered | Duplicates | Mutable |
-|---|---|---|---|
-| List | Yes | Yes | Yes |
-| Tuple | Yes | Yes | No |
-| Set | No positional order guarantee | No | Yes |
-| Dictionary | Yes (insertion order) | Keys: No; values: Yes | Yes |
+### Scenario 1 — Unique Student IDs
 
- 2. Scenario: Storing Unique Student IDs
+I would use a **set** to store student IDs because a set keeps only unique elements. It is also useful for checking whether an ID has already been processed.
 
-I would use a **set** because it stores unique values and automatically prevents duplicate student IDs.
+### Scenario 2 — Student Profile Fields
 
-student_ids = {101, 102, 103, 101}
-print(student_ids)
+I would use a **dictionary** to store a student's name, email and phone number because each field can be mapped to its corresponding value.
 
-Expected output (order may vary):
-{101, 102, 103}
+Example:
 
-Adding an ID that already exists does not create a duplicate. Set membership checks are O(1) on average.
-
- 3. Scenario: Storing Student Profile Details
-
-I would use a **dictionary** because it stores information as key-value pairs.
-
+```python
 student = {
-    "id": 101,
-    "name": "Kiran",
-    "age": 21,
-    "course": "Python Full Stack"
+    "name": "Ravi",
+    "email": "r@example.com"
 }
 
-print(student["name"])
-print(student.get("course"))
+student["phone"] = "9999999999"
 
-Expected output:
-Kiran
-Python Full Stack
+print(student.get("grade", "Not assigned"))
+```
 
-Using 'get()' can help avoid a 'KeyError' when a key is missing. Required fields should also be validated.
+## 3. Debugging Challenge — Student Search
 
-## Task C: Debugging
+### Issue
 
-### Problem
+The original code prints `"Student not found"` for every student who does not match `"Kiran"`. The `else` belongs to the `if` inside the loop, so it executes for each nonmatching student even if Kiran appears later.
 
-The goal is to print exactly one message: either that Kiran was found or that the student was not found.
+### Fixed Code
 
-### Corrected Code
-
+```python
 students = ["Ravi", "Anil", "Kiran", "Suresh"]
 
 for student in students:
@@ -114,27 +108,20 @@ for student in students:
         break
 else:
     print("Student not found")
+```
 
 ### Explanation
 
-The `break` statement stops the loop when Kiran is found. The `else` block belongs to the `for` loop, so it executes only when the loop finishes without encountering `break`.
+The `break` stops the loop when Kiran is found. The `for/else` block executes the `else` only if the loop finishes without a `break`. Therefore, the program prints one correct result.
 
-This ensures that only one correct message is printed.
+## 4. What I Learned
 
-## Task D: Reflection
-1. What approach did I use?
+I learned Python fundamentals, data types, mutable and immutable objects, loops, conditions, functions, and common data structures. I also learned how to use a dictionary for character frequency counting and how to use a set for uniqueness. The coding problem helped me understand how to solve a problem using a clear approach and test different edge cases.
 
-I used a dictionary to count character frequencies and then traversed the string again to find the first character that appears only once.
+## 5. What I Found Difficult
 
-2. What did I learn today?
+I found it challenging to understand how dictionary frequency counting works and how to identify the first non-repeating character while preserving the original order. Debugging the student-search loop was also challenging because the `else` was placed inside the loop. Practising the code with different inputs helped me understand these concepts better.
 
-I learned how to use dictionaries for frequency counting, how Python data structures differ, and how `break` and `for...else` work in loops.
+## 6. Improvement After Mentor Feedback
 
-3. What was difficult?
-
-Understanding how to ignore spaces, handle strings with no non-repeating characters, and place the `else` block correctly was challenging.
-
- 4. What would I improve after mentor feedback?
-
-I would improve variable naming, test more edge cases, and write reusable functions instead of keeping all the logic in a direct input-based script.
-
+After receiving mentor feedback, I would review my approach, test empty strings and repeated characters, and check whether the output is correct for uppercase and lowercase characters. I would also improve my explanation of time and space complexity and practise writing the solution without looking at the reference code.
